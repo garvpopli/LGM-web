@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>TODO LIST</title>
+    <link rel="stylesheet" href="ToDo.css">
+</head>
+
+<body>
+    <h1 class=" heading"> To-Do List</h1><br />
+    <div class="container">
+        <div id="Taskenter">
+            <input type="text" placeholder="Enter Task">
+            <button id="Adder">Add</button>
+        </div>
+        <div id="tasks"></div>
+    </div>
+
+    <script>
+        document.querySelector('#Adder').onclick = () => {
+            if (document.querySelector('#Taskenter input').
+                value.length == 0) {
+                alert("NULL Task is not written properly");
+            }
+            else {
+                document.querySelector('#tasks').innerHTML
+                    += `<div class="task"> <span id="name"> ${document.querySelector("#Taskenter input").value}</span><button class="delete"><i class="fas fa-trash"/></button></div>`
+
+                var Completed = document.querySelectorAll('.delete');
+                var tasks = document.querySelectorAll('#name');
+
+                for (var i = 0; i < Completed.length; i++) {
+                    Completed[i].onclick = function () {
+                        this.parentNode.remove();
+                    }
+                }
+
+                for (var i = 0; i < tasks.length; i++) {
+                    tasks[i].onclick = function () {
+                        this.classList.toggle('completed');
+                    }
+                }
+                document.querySelector('#Taskenter input').value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>
